@@ -972,53 +972,53 @@ nginx_xml2pod=$bundle_dir/$resty_cli/bin/nginx-xml2pod
 
 # generate restydoc index from nginx docs
 
-curdir=$PWD
-cd $root/work/ || exit 1
-if [ -d nginx.org ]; then
-    cd nginx.org/ || exit 1
-    hg pull || exit 1
-    hg update || exit 1
-    cd ..
-else
-    hg clone http://hg.nginx.org/nginx.org || exit 1
-fi
-cd nginx.org/ || exit 1
-hg purge --config extensions.purge= || exit 1
-find xml/en/docs -name 'ngx_http_api_module.xml' -delete
-rm xml/en/docs/njs/*
-$nginx_xml2pod xml/en/docs || exit 1
-cd $curdir || exit 1
+#curdir=$PWD
+#cd $root/work/ || exit 1
+#if [ -d nginx.org ]; then
+#    cd nginx.org/ || exit 1
+#    hg pull || exit 1
+#    hg update || exit 1
+#    cd ..
+#else
+#    hg clone http://hg.nginx.org/nginx.org || exit 1
+#fi
+#cd nginx.org/ || exit 1
+#hg purge --config extensions.purge= || exit 1
+#find xml/en/docs -name 'ngx_http_api_module.xml' -delete
+#rm xml/en/docs/njs/*
+#$nginx_xml2pod xml/en/docs || exit 1
+#cd $curdir || exit 1
 
-echo "restydoc-index $root/work/nginx.org"
-$restydoc_index --outdir bundle $root/work/nginx.org || exit 1
+#echo "restydoc-index $root/work/nginx.org"
+#$restydoc_index --outdir bundle $root/work/nginx.org || exit 1
 
-echo "restydoc-index $root/doc/lua-5.1.5"
-$restydoc_index --outdir bundle $root/doc/lua-5.1.5 || exit 1
+#echo "restydoc-index $root/doc/lua-5.1.5"
+#$restydoc_index --outdir bundle $root/doc/lua-5.1.5 || exit 1
 
-echo "restydoc-index $root/doc/LuaJIT-2.1"
-$restydoc_index --outdir bundle $root/doc/LuaJIT-2.1 || exit 1
+#echo "restydoc-index $root/doc/LuaJIT-2.1"
+#$restydoc_index --outdir bundle $root/doc/LuaJIT-2.1 || exit 1
 
-# generate restydoc index from openresty docs
+## generate restydoc index from openresty docs
 
-for indir in bundle/*/; do
-    #echo "processing directory $indir ..."
-    if [ "$indir" == "bundle/pod/" ]; then
-        continue
-    fi
-    if [ "$indir" == "bundle/nginx-$main_ver/" ]; then
-        continue
-    fi
-    echo "restydoc-index --outdir bundle $indir"
-    $restydoc_index --outdir $curdir/bundle $indir || exit 1
-done
+#for indir in bundle/*/; do
+#    #echo "processing directory $indir ..."
+#    if [ "$indir" == "bundle/pod/" ]; then
+#        continue
+#    fi
+#    if [ "$indir" == "bundle/nginx-$main_ver/" ]; then
+#        continue
+#    fi
+#    echo "restydoc-index --outdir bundle $indir"
+#    $restydoc_index --outdir $curdir/bundle $indir || exit 1
+#done
 
-cd $curdir || exit 1
-find bundle -name '*.md' -delete
-find bundle -name '*.markdown' -delete
-find bundle -name '*.wiki' -delete
-find bundle -name '*~' -delete
+#cd $curdir || exit 1
+#find bundle -name '*.md' -delete
+#find bundle -name '*.markdown' -delete
+#find bundle -name '*.wiki' -delete
+#find bundle -name '*~' -delete
 
-cd $root || exit 1
+#cd $root || exit 1
 
 tar cf $name.tar $name || exit 1
 gzip -f --best $name.tar || exit 1
