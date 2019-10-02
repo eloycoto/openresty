@@ -1018,7 +1018,7 @@ nginx_xml2pod=$bundle_dir/$resty_cli/bin/nginx-xml2pod
 #find bundle -name '*.wiki' -delete
 #find bundle -name '*~' -delete
 
-#cd $root || exit 1
+cd $root || exit 1
 
 tar cf $name.tar $name || exit 1
 gzip -f --best $name.tar || exit 1
