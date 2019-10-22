@@ -556,9 +556,9 @@ mv openresty-drizzle-nginx-module-* drizzle-nginx-module-$ver || exit 1
 #################################
 
 ver=0.10.15
-$root/util/get-tarball "https://github.com/eloycoto/lua-nginx-module/archive/v$ver.tar.gz" -O lua-nginx-module-$ver.tar.gz || exit 1
-tar -xzf lua-nginx-module-$ver.tar.gz || exit 1
-mv lua-nginx-module-$ver ngx_lua-$ver || exit 1
+$root/util/get-tarball "https://github.com/eloycoto/lua-nginx-module/archive/v${ver}b.tar.gz" -O lua-nginx-module-$ver.tar.gz || exit 1
+tar -xzf lua-nginx-module-$ver.tar.gz 
+mv lua-nginx-module-$verb ngx_lua-$ver 
 
 #################################
 
